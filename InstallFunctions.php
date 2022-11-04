@@ -41,9 +41,6 @@ class InstallFunctions {
 					$overrideFiles[$file->getPath()] = array($file->getFilename());
 				}
 			}
-			else if ($file->isFile() && $file->getFilename() == 'autoload.config.php') {
-				$autoload = $file->getRealPath();
-			} 
 		}
 
 		foreach ($overrideFiles as $file=>$fileVersions) {
@@ -109,7 +106,7 @@ class InstallFunctions {
 			}
 		}
 
-		copy($autoload, OC::$configDir . 'autoload.config.php');
+		copy($autoload, __DIR__ . '/autoload.config.php');
 	}
 
 	static function uninstall() {
