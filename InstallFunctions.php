@@ -180,14 +180,19 @@ class InstallFunctions {
 			if (! OC::$server->getAppManager()->isInstalled($appId)) {
 				$installer->installApp($appId);
 				OC::$server->getAppManager()->enableApp($appId);
-				\OC_App::loadApp($appId);
+			}
+
+			if ($installer->isUpdateAvailable($appId)) {
+				$installer->updateAppstoreApp($appId);
 			}
 
 			// Highly unlikely that an app could be installed but not enabled, but it's possible
 			if (! OC::$server->getAppManager()->isEnabledForUser($appId)) {
 				OC::$server->getAppManager()->enableApp($appId);
-				\OC_App::loadApp($appId);
 			}
+
+			\OC_App::loadApp($appId);
+			\OC_App::updateApp($appId);
 		}
 	}
 
