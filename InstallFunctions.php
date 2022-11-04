@@ -5,9 +5,8 @@ namespace OCA\PatchAssets;
 use OC;
 
 class InstallFunctions {
-	static function install() {
+	static function install($appId) {
 		$depVersions = ['OC' => OC::$server->getConfig()->getSystemValue('version')];
-		$appId = OC::$server->getRequest()->getParams()['appIds'][0];
 		$appInfo = OC::$server->getAppManager()->getAppInfo($appId);
 
 		// Check to see if the app has any dependencies listed in its info.xml
