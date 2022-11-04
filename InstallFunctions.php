@@ -24,7 +24,6 @@ class InstallFunctions {
 
 		// Copy over the autoload config file and all override files to the config/overrides directory
 		$overrideFiles = array();
-		$autoload = "";
 		$migrationDir = OC::$server->getAppManager()->getAppPath($appId) . '/lib/Migration';
 
 		$it = new \RecursiveIteratorIterator(
@@ -106,7 +105,7 @@ class InstallFunctions {
 			}
 		}
 
-		copy($autoload, OC::$server->getAppManager()->getAppPath($appId) . '/lib/assets/autoload.config.php');
+		copy(OC::$server->getAppManager()->getAppPath($appId) . '/lib/assets/autoload.config.php', OC::$configDir . 'autoload.config.php');
 	}
 
 	static function uninstall() {
