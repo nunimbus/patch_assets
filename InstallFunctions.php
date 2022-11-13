@@ -12,12 +12,11 @@ class InstallFunctions {
 		// Check to see if the app has any dependencies listed in its info.xml
 		if (
 			(isset($appInfo['dependencies']) || array_key_exists('dependencies', $appInfo)) &&
-			(isset($appInfo['dependencies']['apps']) || array_key_exists('apps', $appInfo['dependencies'])) &&
-			(isset($appInfo['dependencies']['apps']['app']) || array_key_exists('app', $appInfo['dependencies']['apps']))
+			(isset($appInfo['dependencies']['app']) || array_key_exists('app', $appInfo['dependencies']))
 		) {
-			self::installDependencies((array) $appInfo['dependencies']['apps']['app']);
+			self::installDependencies((array) $appInfo['dependencies']['app']);
 
-			foreach ((array) $appInfo['dependencies']['apps']['app'] as $app) {
+			foreach ((array) $appInfo['dependencies']['app'] as $app) {
 				$depVersions[$app] = OC::$server->getAppManager()->getAppVersion($app);
 			}
 		}
