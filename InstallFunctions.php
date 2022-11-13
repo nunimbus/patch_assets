@@ -86,9 +86,6 @@ class InstallFunctions {
 			$success = false;
 
 			if (file_exists($patchFile) && function_exists('xdiff_file_patch')) {
-				// sudo apt-get install php-dev
-				// sudo pecl install xdiff
-				// sudo echo "extension=xdiff.so" > /etc/php/8.1/mods-available/xdiff.ini
 				$success = xdiff_file_patch(
 					$srcFile,
 					"$file/$version/$patchFile",
@@ -100,8 +97,8 @@ class InstallFunctions {
 				}
 			}
 			
-			if ($success !== true || ! function_exists('xdiff_file_patch')) {
-				copy("$file/$version/$fileName", $destFile);
+			if ($success === false) {
+				die(1);
 			}
 		}
 
@@ -182,8 +179,10 @@ class InstallFunctions {
 				OC::$server->getAppManager()->enableApp($appId);
 			}
 
-			if ($installer->isUpdateAvailable($appId)) {
-				$installer->updateAppstoreApp($appId);
+			if (OC::$server->getConfig()->getSystemValue('installed')) {
+				if ($installer->isUpdateAvailable($appId)) {
+					$installer->updateAppstoreApp($appId);
+				}
 			}
 
 			// Highly unlikely that an app could be installed but not enabled, but it's possible
