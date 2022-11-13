@@ -85,7 +85,7 @@ class InstallFunctions {
 			@mkdir($dest, 0755, true);
 			$success = false;
 
-			if (file_exists($patchFile) && function_exists('xdiff_file_patch')) {
+			if (file_exists("$file/$version/$patchFile") && function_exists('xdiff_file_patch')) {
 				$success = xdiff_file_patch(
 					$srcFile,
 					"$file/$version/$patchFile",
