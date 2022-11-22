@@ -9,13 +9,12 @@
 	<licence>agpl</licence>
 	<author>Andrew Summers</author>
 	<namespace>PatchAssets</namespace>
+	<default_enable/>
 	<types>
 		<prevent_group_restriction />
 	</types>
 	<category>tools</category>
 	<dependencies>
 		<nextcloud min-version="24" max-version="25" />
-		<app>onlyoffice</app>
-		<!--lib>xdiff</lib-->
 	</dependencies>
 </info>
