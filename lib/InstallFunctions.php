@@ -101,7 +101,7 @@ class InstallFunctions {
 			}
 		}
 
-		copy(OC::$server->getAppManager()->getAppPath($appId) . '/lib/assets/autoload.config.php', OC::$configDir . 'autoload.config.php');
+		copy(__DIR__ . '/autoload.config.php', OC::$configDir . 'autoload.config.php');
 	}
 
 	static function uninstall() {
