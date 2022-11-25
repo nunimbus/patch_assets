@@ -81,7 +81,10 @@ class InstallFunctions {
 				OC::$server->getLogger()->error("No file available to override version $depVersion of $srcFile");
 			}
 
-			@mkdir($dest, 0755, true);
+			if (! file_exists($dest)) {
+				mkdir($dest, 0755, true);
+			}
+
 			$success = false;
 
 			if (file_exists("$file/$version/$patchFile") && function_exists('xdiff_file_patch')) {
