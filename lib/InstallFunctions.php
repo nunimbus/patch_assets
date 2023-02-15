@@ -98,6 +98,10 @@ class InstallFunctions {
 					OC::$server->getLogger()->warning("Failed to patch $srcFile with $file/$version/$patchFile");
 				}
 			}
+			else {
+				copy($srcFile, $destfile);
+				$success = true;
+			}
 			
 			if ($success === false) {
 				die(1);
