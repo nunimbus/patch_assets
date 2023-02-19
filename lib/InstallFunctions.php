@@ -99,7 +99,7 @@ class InstallFunctions {
 				}
 			}
 			else {
-				copy($srcFile, $destfile);
+				copy("$file/$version/$fileName", $destfile);
 				$success = true;
 			}
 			
